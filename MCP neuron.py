@@ -62,12 +62,11 @@ class Perceptron(object):
 import matplotlib.pyplot as plt
 import pandas as pd
 df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header = None)
-print(df.tail())
 
 y = df.iloc[0:100, 4].values
 y = np.where(y == 'Iris-setosa', -1, 1)
 x = df.iloc[0:100, [0,2]].values
-print(x.shape)
+
 plt.scatter(x[:50, 0], x[:50, 1], color = 'red', marker = 'o', label = 'setosa')
 plt.scatter(x[50:100, 0], x[50:100, 1], color = 'blue', marker = 'x', label = 'versicolor')
 plt.xlabel('petal length')
@@ -84,7 +83,7 @@ plt.show()
 
 from matplotlib.colors import ListedColormap
 
-def plot_decition_regions(x, y, classifier, resolution = 0.02):
+def plot_decision_regions(x, y, classifier, resolution = 0.02):
     # setup marker generator and color map
     markers = ('s', 'x', 'o', '^', 'v')
     colors = ('red', 'blue', 'lightgreen', 'gray', 'cyan')
@@ -106,7 +105,7 @@ def plot_decition_regions(x, y, classifier, resolution = 0.02):
     for idx, cl in enumerate(np.unique(y)):
         plt.scatter(x = x[y == cl, 0], y = x[y == cl, 1], alpha = 0.8, c = cmap(idx), marker = markers[idx], label = cl)
 
-plot_decition_regions(x,y, classifier = ppn)
+plot_decision_regions(x,y, classifier = ppn)
 plt.xlabel("Sepal Length [cm]")
 plt.xlabel("Petal Length [cm]")
 plt.legend(loc = 'upper left')
